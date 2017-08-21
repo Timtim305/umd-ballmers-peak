@@ -1,6 +1,7 @@
-from flask import Flask
-import sqlite3
+from flask import Flask, render_template
+from flask_sqlalchemy import SQLAlchemy
 
+database = SQLAlchemy()
 
 print 'Everything compiles'
 
@@ -10,7 +11,5 @@ app = Flask(__name__)
 def main():
     return "Welcome!"
 
-
-if __name__ == "__main__":
+if __name__ == '__main__':
     app.run()
-
