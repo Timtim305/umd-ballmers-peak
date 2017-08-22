@@ -1,15 +1,6 @@
-from flask import Flask, g, render_template
-import sqlite3
-
-DATABASE = 'Teams.db'
-
 from flask import Flask, render_template, request
 import sqlite3 as sql
 app = Flask(__name__)
-
-@app.route('/')
-def home():
-   return "Welcome!"
 
 @app.route('/registerteam')
 def new_team():
@@ -19,6 +10,7 @@ def new_team():
 def main():
     cur = get_db().cursor()
     return render_template("home.html")
+    
 def get_db():
     db = getattr(g, '_database', None)
     if db is None:
