@@ -9,12 +9,8 @@ app = Flask(__name__)
 
 @app.route("/")
 def main():
-    
     cur = get_db().cursor()
     return "Welcome!"
-
-if __name__ == '__main__':
-    app.run()
 
 def get_db():
     db = getattr(g, '_database', None)
