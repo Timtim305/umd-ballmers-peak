@@ -14,7 +14,14 @@ def questions():
 
 @app.route('/codingq1')
 def coding_q1():
-   return render_template('codingquestion1.html')
+    questionNumber = request.args.get('qnum')
+    if not questionNumber is None:
+        try:
+            return render_template('codingquestion' + str(questionNumber) + '.html')
+        except IOError:
+            return "No such coding question!"
+    else:
+       return "Provide a question number (?qnum=value)!"
 
 @app.route("/")
 def main():
