@@ -8,6 +8,10 @@ DATABASE = 'Teams.db'
 def new_team():
    return render_template('new_team.html')
 
+@app.route('/questions')
+def questions():
+   return render_template('questions.html')
+
 @app.route('/codingq1')
 def coding_q1():
    return render_template('codingquestion1.html')
