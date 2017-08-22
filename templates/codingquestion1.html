@@ -7,7 +7,7 @@
          </p>
 
          <p>
-         1. Given a value x in the array, Nick can only move a maximum of x steps forward into the array. 
+         1. Nick starts at the 0-ith index of each array. Given a value, x for example, in the array, Nick can only move a maximum of x steps forward into the array. 
          </p>
          <p>
          2. With each step, Nick can choose to either retain his previous amount of allocated steps, or reset and take the new value he is currently on as his maximum amount of available steps.
@@ -26,6 +26,10 @@
          <p> Example (on a per-array basis): </p>
          <p>
          Given [1, -2, 2] -> return False, given [2, 10, 0, -1] -> return True
+         </p>
+
+         <p>
+         Note that if Nick surpasses an array, for the next array he needs to cross, he starts at the 0-ith index again.
          </p>
 
          <p>
