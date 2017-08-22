@@ -1,4 +1,4 @@
-from flask import Flask, g
+from flask import Flask, g, render_template
 import sqlite3
 
 DATABASE = 'Teams.db'
@@ -10,8 +10,7 @@ app = Flask(__name__)
 @app.route("/")
 def main():
     cur = get_db().cursor()
-    return "Welcome!"
-
+    return render_template("home.html")
 def get_db():
     db = getattr(g, '_database', None)
     if db is None:
