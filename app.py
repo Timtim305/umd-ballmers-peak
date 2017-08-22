@@ -91,6 +91,5 @@ def addmem():
          return render_template("result.html",msg = msg)
          con.close()
 
-
 if __name__ == '__main__':
    app.run(debug = True)
