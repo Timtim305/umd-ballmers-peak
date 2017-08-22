@@ -28,9 +28,9 @@ def main():
     cur = get_db().cursor()
     return render_template("home.html")
 
-@app.route("/leaderboard")
+@app.route('/leaderboard')
 def leaderboard():
-    return render_template("leaderboard.html")
+    return render_template('leaderboard.html')
 
 def get_db():
     db = getattr(g, '_database', None)
