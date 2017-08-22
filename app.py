@@ -12,7 +12,7 @@ def new_team():
 def questions():
    return render_template('questions.html')
 
-@app.route('/codingq1')
+@app.route('/codingq')
 def coding_q1():
     questionNumber = request.args.get('qnum')
     if not questionNumber is None:
