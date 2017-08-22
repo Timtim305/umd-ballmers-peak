@@ -41,6 +41,46 @@ def addrec():
          return render_template("result.html",msg = msg)
          con.close()
 
+@app.route('/registermember')
+def new_mem():
+   return render_template('new_member.html')
+
+@app.route('/addmem',methods = ['POST', 'GET'])
+def addmem():
+   if request.method == 'POST':
+      try:
+         player_name = request.form['name']
+         team = request.form['team']
+         pin = request.form['pin']
+
+         print "---" + team + "---"
+         print "---" + pin + "---"
+         
+         with sql.connect("Teams.db") as con:
+            cur = con.cursor()
+
+            result = cur.execute("SELECT * FROM REGISTERED WHERE NAME = (?) AND PASSWORD = (?)", (team, pin)) 
+            num = 0
+            
+            for res in result:
+                num += 1
+
+            print num
+
+            if num > 0:    
+              cur.execute("INSERT INTO TEAM_MEMBERS (NAME,TEAM_NAME) VALUES (?,?)",(player_name,team))
+              con.commit()
+              msg = "Record successfully added"
+            else:
+              raise Exception()
+      except:
+         con.rollback()
+         msg = "Invalid team"
+      
+      finally:
+         return render_template("result.html",msg = msg)
+         con.close()
+
 
 if __name__ == '__main__':
    app.run(debug = True)
