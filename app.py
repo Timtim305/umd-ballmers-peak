@@ -56,10 +56,7 @@ def addmem():
          player_name = request.form['name']
          team = request.form['team']
          pin = request.form['pin']
-
-         print "---" + team + "---"
-         print "---" + pin + "---"
-         
+   
          with sql.connect("Teams.db") as con:
             cur = con.cursor()
 
@@ -69,17 +66,18 @@ def addmem():
             for res in result:
                 num += 1
 
-            print num
 
-            if num > 0:    
+            if num > 0 and num < 3:    
               cur.execute("INSERT INTO TEAM_MEMBERS (NAME,TEAM_NAME) VALUES (?,?)",(player_name,team))
               con.commit()
               msg = "Record successfully added"
+            elif num == 0:
+              msg = "Invalid team credentials"
             else:
-              raise Exception()
+              msg = "Team size is out of bounds"
       except:
          con.rollback()
-         msg = "Invalid team"
+         msg = "Failed to add team"
       
       finally:
          return render_template("result.html",msg = msg)
