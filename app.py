@@ -2,6 +2,8 @@ from flask import Flask, render_template, request, g
 import sqlite3 as sql
 app = Flask(__name__)
 
+DATABASE = 'Teams.db'
+
 @app.route('/registerteam')
 def new_team():
    return render_template('new_team.html')
@@ -14,7 +16,7 @@ def main():
 def get_db():
     db = getattr(g, '_database', None)
     if db is None:
-        db = g._database = sqlite3.connect(DATABASE)
+        db = g._database = sql.connect(DATABASE)
     return db
 
 @app.route('/addrec',methods = ['POST', 'GET'])
