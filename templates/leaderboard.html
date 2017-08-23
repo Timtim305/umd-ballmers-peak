@@ -1,18 +1,13 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta http-equipv="Content-Type" content="text/html; charset=UTF-8">
-    <title>UMD Ballmers Peak</title>
-  </head>
-  <body>
-    <div id="wrapper">
-      <nav id="navigation">
-        <p>Leaderboard</p>
-      </nav>
-
-      <div id="content_area">
-        <? echo $content; ?>
-      </div>
-    </div>
-  </body>
+  <p>Leaderboard</p>
+  <table border="1" cellpadding="5" cellspacing="5">
+      {% for row in data %}
+          <tr>
+          {% for d in row %}
+              <td>{{ d }}</td>
+          {% endfor %}
+          </tr>
+      {% endfor %}
+  </table>
 </html>

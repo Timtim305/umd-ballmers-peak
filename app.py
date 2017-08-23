@@ -30,7 +30,16 @@ def main():
 
 @app.route('/leaderboard')
 def leaderboard():
-    return render_template('leaderboard.html')
+    try:
+         with sql.connect("Teams.db") as con:
+            cur = con.cursor()
+            result = cur.execute("SELECT NAME, SCORE FROM REGISTERED ORDER BY SCORE DESC")
+
+            return render_template('leaderboard.html', data = result.fetchall())
+    except:
+       con.rollback()
+       return "Error fetching leaderboard. fuck bruh"
+
 
 def get_db():
     db = getattr(g, '_database', None)
